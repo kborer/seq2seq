@@ -84,7 +84,10 @@ def create_vocabulary_lookup_table(filename, default_value=None):
 
   has_counts = len(vocab[0].split("\t")) == 2
   if has_counts:
-    vocab, counts = zip(*[_.split("\t") for _ in vocab])
+    pairs = [["\t", line.split("\t")[-1]]
+              if line.startswith("\t\t") else line.split("\t")
+              for line in vocab]
+    vocab, counts = zip(*pairs)
     counts = [float(_) for _ in counts]
     vocab = list(vocab)
   else:
