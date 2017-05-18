@@ -47,7 +47,7 @@ class TestPrintModelAnalysisHook(tf.test.TestCase):
     with gfile.GFile(os.path.join(model_dir, "model_analysis.txt")) as file:
       file_contents = file.read().strip()
 
-    self.assertEqual(file_contents.decode(), "_TFProfRoot (--/16.38k params)\n"
+    self.assertEqual(file_contents, "_TFProfRoot (--/16.38k params)\n"
                      "  weigths (128x128, 16.38k/16.38k params)")
     outfile.close()
 
